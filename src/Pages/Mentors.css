@@ -1,0 +1,304 @@
+/* Root */
+.mentors-root {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #000000 70%, #004d26 100%);
+  font-family: "Segoe UI", sans-serif;
+  color: #e5e7eb;
+  padding: 2rem;
+}
+
+/* Title */
+.mentors-title {
+  text-align: center;
+  font-size: 3rem;
+  font-weight: bold;
+  color: white;
+  text-shadow: 0 0 10px #00ff80, 0 0 20px rgba(0,255,128,0.4);
+  margin-bottom: 2rem;
+}
+
+/* Container */
+.mentors-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* Mentors List */
+.mentors-list-section {
+  flex: 1 1 500px;
+  max-width: 700px;
+}
+
+.mentors-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .mentors-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mentors-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Mentor Card */
+.mentor-card {
+  background: rgba(0,0,0,0.8);
+  border: 1px solid rgba(0,255,128,0.4);
+  border-radius: 1rem;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0,255,128,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.mentor-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,255,128,0.4);
+}
+
+.mentor-profile-pic {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 2px solid cyan;
+}
+
+.mentor-name {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: cyan;
+}
+
+.mentor-expertise {
+  margin-top: 0.25rem;
+  font-weight: 500;
+  color: #00ff80;
+}
+
+.mentor-bio {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+  color: #b0bec5;
+}
+
+.mentor-available {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-bottom: 0.75rem;
+}
+
+.mentor-links a {
+  margin: 0 0.3rem;
+  color: cyan;
+  transition: color 0.3s;
+}
+
+.mentor-links a:hover {
+  color: #00ff80;
+}
+
+.book-btn {
+  background: cyan;
+  color: black;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s, background 0.3s;
+}
+
+.book-btn:hover {
+  background: #00e5e5;
+  transform: scale(1.05);
+}
+
+/* Register Section */
+.register-section {
+  flex: 1 1 350px;
+  max-width: 400px;
+}
+
+.upload-card {
+  background: rgba(0,0,0,0.7);
+  border-radius: 1rem;
+  border: 1px solid rgba(0,255,128,0.3);
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,255,128,0.2);
+}
+
+.upload-input,
+.upload-textarea {
+  width: 100%;
+  padding: 0.75rem;
+  margin-top: 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid #00ff80;
+  color: white;
+  transition: all 0.3s;
+}
+
+.upload-input:focus,
+.upload-textarea:focus {
+  outline: none;
+  border-color: cyan;
+  box-shadow: 0 0 8px cyan;
+}
+
+.upload-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  color: #b0bec5;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+}
+
+.upload-btn {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background: cyan;
+  color: black;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.upload-btn:hover {
+  background: #00e5e5;
+  transform: scale(1.05);
+}
+
+/* Booking Modal */
+.booking-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+
+.booking-box {
+  background: rgba(0,0,0,0.9);
+  border-radius: 1rem;
+  padding: 2rem;
+  width: 90%;
+  max-width: 450px;
+  border: 1px solid rgba(0,255,128,0.4);
+  box-shadow: 0 8px 20px rgba(0,255,128,0.3);
+  text-align: center;
+}
+
+.booking-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: cyan;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.booking-subtitle {
+  color: #00ff80;
+  margin-bottom: 1rem;
+}
+
+.booking-input,
+.booking-select {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(0,0,0,0.85);
+  border: 1px solid #00ff80;
+  color: white;
+  transition: 0.3s;
+}
+
+.booking-input:focus,
+.booking-select:focus {
+  outline: none;
+  border-color: cyan;
+  box-shadow: 0 0 8px cyan;
+}
+
+.booking-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.confirm-btn,
+.cancel-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.confirm-btn {
+  background: cyan;
+  color: black;
+}
+
+.confirm-btn:hover {
+  background: #00e5e5;
+  transform: scale(1.05);
+}
+
+.cancel-btn {
+  background: #333;
+  color: #e5e7eb;
+}
+
+.cancel-btn:hover {
+  background: #555;
+}
+
+.confirmed-msg {
+  margin-top: 1rem;
+  color: #00ff80;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .mentors-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .mentors-list-section,
+  .register-section {
+    max-width: 100%;
+  }
+
+  .mentors-grid {
+    grid-template-columns: 1fr;
+  }
+}
