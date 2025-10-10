@@ -45,7 +45,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to="/courses">
+          {/* <Link to="/courses">
             <BookOpen size={18} /> Courses
           </Link>
         </li>
@@ -54,7 +54,7 @@ const Navbar = () => {
             <LayoutDashboard size={18} /> Dashboard
           </Link>
         </li>
-      </ul>
+      </ul> */}
 
       {/* Desktop Actions */}
       <div className="navbar-actions">
@@ -81,12 +81,12 @@ const Navbar = () => {
         <Link to="/assessment">
           <Brain size={18} /> AI Assessment
         </Link>
-        <Link to="/courses">
+        {/* <Link to="/courses">
           <BookOpen size={18} /> Courses
         </Link>
         <Link to="/dashboard">
           <LayoutDashboard size={18} /> Dashboard
-        </Link>
+        </Link> */}
         <Link to="/auth" className="btn btn-outline">
           <LogIn size={16} /> Login
         </Link>
