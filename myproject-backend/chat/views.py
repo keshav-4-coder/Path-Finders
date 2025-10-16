@@ -210,7 +210,7 @@ Be specific and motivating. Don't repeat the roadmap - just add value."""
             roadmap_data = None
             
             system_prompt = f"""You are a career and education mentor. Student name: {user_profile.get('name', 'Student')}.
-If they mention an interest, help them understand that field. Keep response concise (4-5 sentences max).
+If they mention an interest, help them understand that field. Keep response concise (2-4 sentences max).
 Be encouraging and practical. If they ask questions, answer specifically."""
             
             messages = conversation_history[user_id][-20:]
@@ -218,6 +218,7 @@ Be encouraging and practical. If they ask questions, answer specifically."""
         # Call Claude API
         response = client.messages.create(
             model="claude-3-haiku-20240307",
+            
             max_tokens=500,
             system=system_prompt,
             messages=messages

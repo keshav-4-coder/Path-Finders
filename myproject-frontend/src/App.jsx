@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import { AuthProvider } from './context/AuthContext.jsx'; // Add this
 
 // ✅ Lazy-loaded Pages (ensure each has a default export)
 const LandingPage = lazy(() => import("./Pages/LandingPage"));
@@ -7,7 +8,7 @@ const Mentors = lazy(() => import("./Pages/Mentors"));
 const Assessment = lazy(() => import("./Pages/Assessment"));
 const Auth = lazy(() => import("./Pages/Auth"));
 const About = lazy(() => import("./Pages/About"));
-const Profile = lazy(() => import("./Pages/Profile")); // now lazy-loaded for consistency
+const Profile = lazy(() => import("./Pages/Profile"));
 
 // ✅ Shared Components
 import Navbar from "./Components/Navbar";
@@ -78,9 +79,11 @@ function Layout() {
 // ✅ Main App Component
 function App() {
   return (
-    <Router>
-      <Layout />
-    </Router>
+    <AuthProvider> {/* Wrap with AuthProvider */}
+      <Router>
+        <Layout />
+      </Router>
+    </AuthProvider>
   );
 }
 

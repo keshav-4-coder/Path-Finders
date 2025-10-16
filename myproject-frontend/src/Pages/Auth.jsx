@@ -1,28 +1,48 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import axios from "axios";
+import { AuthContext } from "../context/AuthContext";
 import "../styles/Auth.css";
 
 export default function Auth() {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ email: "", password: "", name: "" });
+  const [message, setMessage] = useState("");
+  const { login } = useContext(AuthContext);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isLogin) {
-      console.log("Logging in with:", formData);
-      // 🔗 Add login API call
-    } else {
-      console.log("Signing up with:", formData);
-      // 🔗 Add signup API call
+    setMessage("");
+    try {
+      if (isLogin) {
+        const response = await axios.post("http://127.0.0.1:8000/api/login/", {
+          username: formData.email,
+          password: formData.password,
+        });
+        setMessage(response.data.message);
+        login(response.data.access, response.data.refresh, response.data.name);
+        window.location.href = "/profile";
+      } else {
+        const response = await axios.post("http://127.0.0.1:8000/api/signup/", {
+          username: formData.email,
+          password: formData.password,
+          name: formData.name,
+        });
+        setMessage(response.data.message);
+        login(response.data.access, response.data.refresh, response.data.name);
+        window.location.href = "/profile";
+      }
+    } catch (error) {
+      setMessage(error.response?.data?.error || "An error occurred");
+      console.error("Error:", error);
     }
   };
 
   const handleForgotPassword = () => {
     alert("Redirecting to password reset flow...");
-    // 🔗 Replace with your reset password logic or navigation
   };
 
   return (
@@ -56,14 +76,13 @@ export default function Auth() {
             onChange={handleChange}
             required
           />
-
           {isLogin && (
             <p className="forgot-password" onClick={handleForgotPassword}>
               Forgot Password?
             </p>
           )}
-
           <button type="submit">{isLogin ? "Login" : "Sign Up"}</button>
+          {message && <p style={{ color: message.includes("error") ? "red" : "green" }}>{message}</p>}
         </form>
         <p className="toggle-text">
           {isLogin ? "Don't have an account?" : "Already have an account?"}

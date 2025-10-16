@@ -1,27 +1,42 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { User, Mail, Briefcase, Heart, MapPin, Book, Code, BriefcaseIcon, Link } from "lucide-react";
 import { jsPDF } from "jspdf";
+import { AuthContext } from "../context/AuthContext"; // Adjust path
 import "../styles/Profile.css";
 
 const Profile = () => {
+  const { user, logout } = useContext(AuthContext); // Get auth context
   const [profile, setProfile] = useState({
     name: "Your Full Name",
-    email: "email@example.com",
+    email: "user_mail@example.com",
     occupation: "Your Occupation",
     interests: "Your Interests",
     location: "Your Location",
     bio: "A brief bio about yourself.",
-    profilePicture: "./static/K.png",
-    education: "Bachelor's in Computer Science, 2025",
-    skills: "React, Django, JavaScript, Python, AI",
-    experience: "Your expericence (2021-2023); Other Experience (2020-2021)",
-    linkedin: "Your-linkedin-profile link",
-    github: "Your-github-profile link",
+    profilePicture: "./static/Logo.png",
+    education: "Education Level, 2025",
+    skills: "React, JavaScript, Django, Sql, Python, AI",
+    experience: "Your Experience (2021-2023); Other Experience(2020-2021)",
+    linkedin: "Your LinkedIn Profile link",
+    github: "Your GitHub Profile link",
   });
 
   const [isEditing, setIsEditing] = useState(false);
   const [newProfilePicture, setNewProfilePicture] = useState(null);
   const [errors, setErrors] = useState({});
+
+  // Load profile from localStorage or API if authenticated
+  useEffect(() => {
+    if (user) {
+      // Placeholder: Fetch profile data from backend if available
+      // Example: axios.get('/api/profile/').then(response => setProfile(response.data))
+      // For now, use localStorage or hardcoded data
+      const savedProfile = localStorage.getItem('profile');
+      if (savedProfile) {
+        setProfile(JSON.parse(savedProfile));
+      }
+    }
+  }, [user]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -57,6 +72,7 @@ const Profile = () => {
       ...profile,
       profilePicture: newProfilePicture || profile.profilePicture,
     });
+    localStorage.setItem('profile', JSON.stringify(profile)); // Save to localStorage
     setIsEditing(false);
     alert("Profile saved successfully!");
   };
@@ -78,6 +94,7 @@ const Profile = () => {
         profilePicture: "",
       });
       setNewProfilePicture(null);
+      localStorage.removeItem('profile');
       setIsEditing(false);
       alert("Profile deleted!");
     }
@@ -137,6 +154,11 @@ const Profile = () => {
 
     doc.save(`${profile.name || "Profile"}-CV.pdf`);
   };
+
+  // Protect profile view
+  if (!user) {
+    return <div className="p-8 text-center text-red-400">Please log in to view your profile.</div>;
+  }
 
   return (
     <div className="profile-container">
@@ -371,6 +393,13 @@ const Profile = () => {
               aria-label="Delete Profile"
             >
               Delete Profile
+            </button>
+            <button
+              className="btn btn-secondary"
+              onClick={logout} // Add logout button
+              aria-label="Logout"
+            >
+              Logout
             </button>
           </div>
         </div>
