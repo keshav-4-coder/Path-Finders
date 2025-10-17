@@ -1,0 +1,5 @@
+anthropic
+djangorestframework-simplejwt
+django-cors-headers
+dotenv
+django
