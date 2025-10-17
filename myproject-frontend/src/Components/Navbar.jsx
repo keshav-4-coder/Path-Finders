@@ -30,7 +30,7 @@ const Navbar = () => {
       {/* Logo */}
       <div className="navbar-logo">
         
-        <Link to="/"> <img src="/Logo.png" alt="Path-Finder Logo" className="logo" /></Link>
+        <Link to="/"> <img src="/static/Logo.png" alt="Path-Finder Logo" className="logo" /></Link>
       </div>
 
       {/* Desktop Links */}

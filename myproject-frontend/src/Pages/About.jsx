@@ -74,17 +74,17 @@ const About = () => {
     {
       name: "Aashish Shrestha",
       role: "NLP Expert",
-      img: "/A.png",
+      img: "/static/A.png",
     },
     {
       name: "Keshav Thapa",
       role: "Full Stack Developer",
-      img: "/K.png",
+      img: "/static/K.png",
     },
     {
       name: "Bidhan K.C",
       role: "Backend Expert",
-      img: "/B.png",
+      img: "/static/B.png",
     },
   ];
 
